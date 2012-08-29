@@ -1,3 +1,18 @@
+# = Class: ruby::packages
+#
+# Installs packages required to compilre ruby
+#
+# == Parameters:
+#
+# None.
+#
+# == Requires:
+#
+# Nothing.
+#
+# == Sample Usage:
+#
+# class { 'ruby::packages': }
 #
 class ruby::packages {
   package { 'gcc':
