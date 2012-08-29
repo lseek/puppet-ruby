@@ -5,6 +5,7 @@
 # == Parameters:
 #
 # $version_name:: ruby-build formula name to use
+# $priority:: alternatives priority to be set. Defaults to 10.
 #
 # == Requires:
 #
@@ -15,18 +16,25 @@
 #   ruby::version { '1.9.3-p194': }
 #
 define ruby::version(
-  $version_name = $name
+  $version_name = $name,
+  $priority = $ruby::params::default_priority
 ) {
   exec { "build_ruby_${version_name}":
     command => "ruby-build ${version_name} /usr/local/ruby-${version_name}",
     path    => '/usr/local/bin',
     unless  => "test -d /usr/local/ruby-${version_name}",
     require => Exec['install_ruby_build'],
-    notify  => Exec["install_ruby_${version_name}"],
   }
 
   exec { "install_ruby_${version_name}":
-    command => "alternatives install /usr/local/ruby ruby /usr/local/ruby-${version_name}",
+    command => "alternatives install /usr/local/ruby ruby /usr/local/ruby-${version_name} ${priority}",
     path    => '/usr/sbin',
+    require => Exec["build_ruby_${version_name}"],
+  }
+
+  exec { "set_ruby_${version_name}":
+    command => "alternatives --set ruby /usr/local/ruby-${version_name}",
+    path    => '/usr/sbin',
+    require => Exec["install_ruby_${version_name}"],
   }
 }
