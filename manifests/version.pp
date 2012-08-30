@@ -27,7 +27,7 @@ define ruby::version(
 
   exec { "build_ruby_${version_name}":
     command => "ruby-build ${version_name} /usr/local/ruby-${version_name}",
-    path    => '/usr/local/bin',
+    path    => '/usr/local/bin:/bin',
     unless  => "test -d /usr/local/ruby-${version_name}",
     require => Class['ruby::ruby_build', 'ruby::packages'],
     timeout => '0',

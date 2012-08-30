@@ -15,7 +15,8 @@ describe 'ruby::version' do
     should contain_exec('build_ruby_2.1.0-p0').with(
       :command => 'ruby-build 2.1.0-p0 /usr/local/ruby-2.1.0-p0',
       :require => ['Class[Ruby::Ruby_build]', 'Class[Ruby::Packages]'],
-      :timeout => 0
+      :timeout => 0,
+      :path => '/usr/local/bin:/bin'
     )
   end
 
