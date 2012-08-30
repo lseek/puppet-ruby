@@ -23,7 +23,7 @@ define ruby::version(
     command => "ruby-build ${version_name} /usr/local/ruby-${version_name}",
     path    => '/usr/local/bin',
     unless  => "test -d /usr/local/ruby-${version_name}",
-    require => Exec['install_ruby_build'],
+    require => Class['ruby::ruby_build', 'ruby::packages'],
   }
 
   exec { "install_ruby_${version_name}":

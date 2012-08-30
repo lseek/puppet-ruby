@@ -7,7 +7,7 @@ describe 'ruby::version' do
   it "builds an exec command to build the version of ruby specified" do
     should contain_exec('build_ruby_2.1.0-p0').with(
       :command => 'ruby-build 2.1.0-p0 /usr/local/ruby-2.1.0-p0',
-      :require => 'Exec[install_ruby_build]'
+      :require => ['Class[Ruby::Ruby_build]', 'Class[Ruby::Packages]']
     )
   end
 
