@@ -1,0 +1,8 @@
+name    'ecbypi-ruby'
+version '0.0.1'
+source 'http://github.com/ecbypi/puppet-ruby'
+author 'Eduardo Gutierrez'
+license 'MIT'
+summary 'Puppet Ruby management module'
+description 'Allows you to install multiple versions of ruby via ruby-build'
+project_page 'http://github.com/ecbypi/puppet-ruby'
