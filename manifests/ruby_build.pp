@@ -35,8 +35,7 @@ class ruby::ruby_build(
   }
 
   exec { 'install_ruby_build':
-    command => './install.sh',
-    cwd     => $clone_path,
+    command => "/bin/sh ${clone_path}/install.sh",
     require => Exec['clone_ruby_build'],
   }
 

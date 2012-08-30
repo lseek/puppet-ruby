@@ -16,8 +16,7 @@ describe 'ruby::ruby_build' do
 
   it do
     should contain_exec('install_ruby_build').with(
-      :command => './install.sh',
-      :cwd => clone_path,
+      :command => '/bin/sh /usr/local/ruby-build/install.sh',
       :require => 'Exec[clone_ruby_build]'
     )
   end
