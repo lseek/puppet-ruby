@@ -1,5 +1,5 @@
 name    'ecbypi-ruby'
-version '0.0.1'
+version '0.0.2'
 source 'http://github.com/ecbypi/puppet-ruby'
 author 'Eduardo Gutierrez'
 license 'MIT'
