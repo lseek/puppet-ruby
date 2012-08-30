@@ -34,9 +34,17 @@ class ruby::ruby_build(
     require => Package['git'],
   }
 
-  exec { 'install_ruby_build':
-    command => "/bin/sh ${clone_path}/install.sh",
+  exec { 'update_ruby_build':
+    command => 'git pull',
+    path    => '/usr/bin',
+    cwd     => $clone_path,
     require => Exec['clone_ruby_build'],
+  }
+
+  exec { 'install_ruby_build':
+    command => '/bin/sh ./install.sh',
+    cwd     => $clone_path,
+    require => Exec['update_ruby_build'],
   }
 
   package { 'git':
