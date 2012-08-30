@@ -17,7 +17,7 @@
 #
 define ruby::version(
   $version_name = $name,
-  $priority = $ruby::params::default_priority
+  $priority = '10'
 ) {
   exec { "build_ruby_${version_name}":
     command => "ruby-build ${version_name} /usr/local/ruby-${version_name}",

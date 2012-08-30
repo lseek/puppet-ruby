@@ -23,8 +23,8 @@
 #   }
 #
 class ruby::ruby_build(
-  $repository = $ruby::params::ruby_build_repo,
-  $clone_path = $ruby::params::ruby_build_clone_path
+  $repository = 'git://github.com/sstephenson/ruby-build.git',
+  $clone_path = '/root/ruby-build'
 ) {
 
   exec { 'clone_ruby_build':
