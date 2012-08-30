@@ -4,6 +4,13 @@ describe 'ruby::version' do
   let(:title) { '2.1.0-p0' }
   let(:params) { { :version_name => title, :priority => '50' } }
 
+  it "notifies the build has started" do
+    should contain_notify('building_ruby_2.1.0-p0').with(
+      :message => 'Building ruby 2.1.0-p0',
+      :before => 'Exec[build_ruby_2.1.0-p0]'
+    )
+  end
+
   it "builds an exec command to build the version of ruby specified" do
     should contain_exec('build_ruby_2.1.0-p0').with(
       :command => 'ruby-build 2.1.0-p0 /usr/local/ruby-2.1.0-p0',

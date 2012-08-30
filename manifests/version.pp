@@ -19,6 +19,12 @@ define ruby::version(
   $version_name = $name,
   $priority = '10'
 ) {
+
+  notify { "building_ruby_${version_name}":
+    message => "Building ruby ${version_name}",
+    before  => Exec["build_ruby_${version_name}"],
+  }
+
   exec { "build_ruby_${version_name}":
     command => "ruby-build ${version_name} /usr/local/ruby-${version_name}",
     path    => '/usr/local/bin',
