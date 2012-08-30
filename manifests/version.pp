@@ -34,7 +34,7 @@ define ruby::version(
   }
 
   exec { "install_ruby_${version_name}":
-    command => "alternatives install /usr/local/ruby ruby /usr/local/ruby-${version_name} ${priority}",
+    command => "alternatives --install /usr/local/ruby ruby /usr/local/ruby-${version_name} ${priority}",
     path    => '/usr/sbin',
     require => Exec["build_ruby_${version_name}"],
   }

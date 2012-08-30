@@ -22,7 +22,7 @@ describe 'ruby::version' do
 
   it "installs ruby version with `alternatives`" do
     should contain_exec('install_ruby_2.1.0-p0').with(
-      :command => 'alternatives install /usr/local/ruby ruby /usr/local/ruby-2.1.0-p0 50',
+      :command => 'alternatives --install /usr/local/ruby ruby /usr/local/ruby-2.1.0-p0 50',
       :require => 'Exec[build_ruby_2.1.0-p0]'
     )
   end
