@@ -15,14 +15,13 @@
 #
 #   ruby::version { '1.9.3-p194': }
 #
-
-# set the PATH
-Exec { path => '/usr/local/bin:/bin' }
-
 define ruby::version(
   $version_name = $name,
   $priority = '10'
 ) {
+  # set a default PATH for all execs
+  Exec { path => '/usr/local/bin:/bin' }
+
   exec { "build_ruby_${version_name}":
     command => "ruby-build ${version_name} /usr/local/ruby-${version_name}",
     path    => '/usr/local/bin:/bin',

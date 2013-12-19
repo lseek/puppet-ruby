@@ -23,13 +23,12 @@
 #   }
 #
 
-# set the PATH
-Exec { path => '/bin:/usr/bin:/usr/sbin:/usr/local/bin' }
-
 class ruby::ruby_build(
   $repository = 'git://github.com/sstephenson/ruby-build.git',
   $clone_path = '/root/ruby-build'
 ) {
+  # set a default PATH for all execs
+  Exec { path => '/bin:/usr/bin:/usr/sbin:/usr/local/bin' }
 
   exec { 'clone_ruby_build':
     command => "git clone ${repository} ${clone_path}",
