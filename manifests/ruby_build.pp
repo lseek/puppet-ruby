@@ -22,6 +22,10 @@
 #     clone_path => '/usr/local/ruby-build',
 #   }
 #
+
+# set the PATH
+Exec { path => '/bin:/usr/bin:/usr/sbin:/usr/local/bin' }
+
 class ruby::ruby_build(
   $repository = 'git://github.com/sstephenson/ruby-build.git',
   $clone_path = '/root/ruby-build'
@@ -29,14 +33,12 @@ class ruby::ruby_build(
 
   exec { 'clone_ruby_build':
     command => "git clone ${repository} ${clone_path}",
-    path    => '/usr/bin',
     unless  => "test -d ${clone_path}",
     require => Package['git'],
   }
 
   exec { 'update_ruby_build':
     command => 'git pull',
-    path    => '/usr/bin',
     cwd     => $clone_path,
     require => Exec['clone_ruby_build'],
   }
