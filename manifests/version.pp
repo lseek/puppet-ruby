@@ -20,7 +20,7 @@ define ruby::version(
   $priority = '10'
 ) {
   # set a default PATH for all execs
-  Exec { path => '/usr/local/bin:/bin' }
+  Exec { path => $::path }
 
   exec { "build_ruby_${version_name}":
     command => "ruby-build ${version_name} /usr/local/ruby-${version_name}",
